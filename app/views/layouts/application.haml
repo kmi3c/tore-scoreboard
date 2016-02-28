@@ -5,7 +5,56 @@
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
-  %body
+  %body{class:params[:action]}
     .container-fluid
-      = render 'shared/flash_messages'
-      = yield
+      %nav
+        .col-md-8= image_tag asset_path("logo.gif")
+        .col-md-4
+          %a.newsletter{href:"http://www.centromilanofiori.it/newsletter"}
+            %span 
+              iscriviti alla newsletter
+              %img{src:"http://www.centromilanofiori.it/wp-content/themes/acquario/img/mail.gif"}
+          %br
+            %span.seguici
+              seguici su
+              %a{target:"_blank",href:"https://www.facebook.com/pages/CENTRO-COMMERCIALE-MILANOFIORI/172986452748755?ref=br_rs"}
+                %img{src:"http://www.centromilanofiori.it/wp-content/themes/acquario/img/facebook.gif"}
+              &nbsp;
+              %a{target:"_blank",href:"https://twitter.com/milanofiori"}
+                %img{src:"http://www.centromilanofiori.it/wp-content/themes/acquario/img/twitter.gif"}
+              &nbsp;
+              %a{target:"_blank",href:"https://www.youtube.com/user/centromilanofiori"}
+                %img{src:"http://www.centromilanofiori.it/wp-content/themes/acquario/img/youtube.gif"}
+      .col-md-12.slider
+        .bx-slider
+          = image_tag "http://dummyimage.com/600x300/ffffff/FF0000.png&text=OLIMIPA BASKET CHALLENGE 1"
+          = image_tag "http://dummyimage.com/600x300/ffffff/FF0000.png&text=OLIMIPA BASKET CHALLENGE 2"
+          = image_tag "http://dummyimage.com/600x300/FF0000/ffffff.png&text=OLIMIPA BASKET CHALLENGE 3"
+
+      :javascript
+        $(document).ready(function(){
+          $('.bx-slider').bxSlider();
+        });  
+      .col-md-12
+        %ol.breadcrumb
+          %li
+            %a{target:"_blank",href:"http://www.centromilanofiori.it/"}=image_tag(asset_path('home.gif'), alt:'Home')
+          %li
+            %a{target:"_blank",href:"http://www.centromilanofiori.it/i-negozi-del-centro/"}I negozi del centro
+          %li
+            %a{target:"_blank",href:"http://www.centromilanofiori.it/eventi/"}Eventi
+          %li
+            %a{target:"_blank",href:"http://www.centromilanofiori.it/fotogallery/"}Fotogallery
+          %li
+            %a{target:"_blank",href:"http://www.centromilanofiori.it/promozioni/"}Promozioni
+          %li
+            %a{target:"_blank",href:"http://www.centromilanofiori.it/milanofiori-card/"}Milanofiori Gift Card
+          %li
+            %a{target:"_blank",href:"http://www.centromilanofiori.it/dove-siamo/"}Dove siamo
+          %li
+            %a{target:"_blank",href:"http://www.centromilanofiori.it/collabora-con-noi/"}Collabora con noi
+          %li
+            %a{target:"_blank",href:"http://www.whatever.it/Olimpia/"}Olimpia Challenge
+      .col-md-8= yield
+      .col-md-4
+        = image_tag asset_path('final.jpg')

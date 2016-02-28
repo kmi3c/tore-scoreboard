@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  layout 'ipads'
   def new
   end
 
@@ -17,6 +18,6 @@ class SessionsController < ApplicationController
   def destroy
     reset_session
     flash[:notice] = "Successfully logged out"
-    redirect_to login_path
+    redirect_to new_session_path
   end
 end

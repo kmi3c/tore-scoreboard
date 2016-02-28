@@ -1,0 +1,18 @@
+!!!
+%html
+  %head
+    %title Tore Scoreboard
+    = stylesheet_link_tag 'application', media: 'all'
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+  %body{class:params[:action]}
+    #overflow{style:'display:none;'}
+      %a.cancel ANNULLA
+      %a.ok CONFERMA
+    .container-fluid
+      = image_tag asset_path('header1.jpg')
+      = link_to session_destroy_path, class:'btn' do
+        Logout
+
+      = render 'shared/flash_messages'
+      = yield

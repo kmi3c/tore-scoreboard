@@ -1,4 +1,5 @@
 class UsersController < ScaffoldController
+  layout "ipads", except: [:dashboard]
   before_action :authenticate_hostes, except: :dashboard
   def new
     @resource = resource_class.new
@@ -6,7 +7,9 @@ class UsersController < ScaffoldController
     render_template
   end
   def index
-    @resources = User.today.paginate(page:params[:page])
+  	today = User.user_days.except('TOTAL').invert[Time.zone.now.to_date]
+    today = today.nil? ? 'score' : User.user_days.except('TOTAL').invert[Time.zone.now.to_date].gsub(' ','').downcase
+    @resources = User.order("#{today} ASC").where('updated_at >= ?', Time.zone.now.to_date.to_time)
     render_template
   end
   def update
@@ -18,13 +21,19 @@ class UsersController < ScaffoldController
     end
   end
   def dashboard
-    @users = User.order('users.score DESC')
+    @today = params[:day].nil? ? Time.zone.now.to_date : User.user_days[params[:day].upcase.gsub('-',' ')]
+    score = params[:day].nil? ? 'score' : params[:day].gsub('-','')
+    score = 'score' if score == 'total'
+    @users = User.order("users.#{score} DESC")
   end
   def create
     @adult = resource_params[:adult]
     @resource = resource_class.new(resource_params)
     if @resource.save
       redirect_to resource_new_path, notice: t('create.success',scope: :scaffold, resource_class: resource_class)
+    elsif @resrouce = User.where(email: resource_params[:email]).first
+      @resource.save
+      redirect_to resource_new_path, notice: t('create.success_login',scope: :scaffold, resource_class: resource_class)  
     else
       flash[:alert] = @resource.errors.to_a
       render_template

@@ -3,6 +3,7 @@ en:
     create:
       name: 'New'
       success: '%{resource_class} was successfully created.'
+      success_login: '%{resource_class} was successfully sign in.'
     update:
       success: '%{resource_class} was successfully updated.'
     show:

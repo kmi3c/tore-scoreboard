@@ -1,16 +1,27 @@
-%h1 Today Users list
-%table.table.table-striped{width:'100%'}
+%table{width:'100%'}
   %thead
     %tr
-      %th Nickname
-      %th Today
-      %th Total
+      %th Nome Giocatore
+      %th.points Punti
+      %th.confirm Conferma
   %tbody
     -@resources.each do |resource|
       %tr
-        %td= link_to resource.nickname , resource_edit_path(resource)
-        %td
+        %th
+          %a{href:edit_user_path(resource)}= "#{resource.first_name} #{resource.last_name} [#{resource.nickname}]"
+        %td.points
           =form_for(resource) do |f|
-            %input#user_score{type:"text",name:"user[score]",value:resource.today_score}
-        %td= resource.score
-  = will_paginate @resources
+            %input#user_score{type:"text",name:"user[#{resource.today_method}]",value:resource.today_score}
+        %td.confirm
+          %a.submit.btn{'data-id'=>"edit_user_#{resource.id}",class:"#{'grey' if resource.today_score != 0}"} OK
+:javascript
+  $('a.submit').bind('click',function(){
+    $('#overflow').fadeIn('quick');
+    $('#overflow .ok').data('id',$('#'+$(this).data('id')));
+  });
+  $('.ok').bind('click',function(){
+    $(this).data('id').submit();
+  });
+  $('.cancel').bind('click',function(){
+    $('#overflow').fadeOut('quick');
+  });

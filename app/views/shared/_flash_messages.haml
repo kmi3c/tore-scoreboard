@@ -1,5 +1,5 @@
 - flash.each do |type, message|
-  .alert.alert-dismissible.fade.in{class: type}
+  %div{class: "alert alert-dismissible fade in #{type}"}
     -if  message.is_a? Array
       -message.each do |m|
         = m

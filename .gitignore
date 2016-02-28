@@ -8,6 +8,7 @@
 !/log/.keep
 /tmp
 /public/assets/*
+/public/system/*
 .idea
 # Ignore configs/settings etc.
 /config/database.yml

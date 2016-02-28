@@ -20,11 +20,19 @@ ActiveRecord::Schema.define(version: 20151027075924) do
     t.string   "p_first_name",   limit: 255
     t.string   "p_last_name",    limit: 255
     t.string   "nickname",       limit: 255
+    t.string   "phone",          limit: 255
     t.text     "signature_json", limit: 65535
     t.string   "signature_uid",  limit: 255
     t.string   "signature_name", limit: 255
     t.boolean  "adult"
-    t.text     "days",           limit: 65535
+    t.boolean  "accept_r"
+    t.boolean  "accept_m"
+    t.integer  "day1",           limit: 4,     default: 0
+    t.integer  "day2",           limit: 4,     default: 0
+    t.integer  "day3",           limit: 4,     default: 0
+    t.integer  "day4",           limit: 4,     default: 0
+    t.integer  "day5",           limit: 4,     default: 0
+    t.integer  "finale",         limit: 4,     default: 0
     t.integer  "score",          limit: 4,     default: 0
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false

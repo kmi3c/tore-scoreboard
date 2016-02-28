@@ -1,7 +1,7 @@
 /*
  *= require signature-pad
+ *= require bxslider
  *= require bootstrap_and_overrides
- *= require_tree .
  *= require_self
  */
 .score-row td.day{
@@ -14,20 +14,56 @@ th a.today, table th:last-child a{
     color: #000;
     cursor: pointer;
 }
-th a{
+thead th a{
     color: #ccc;
     cursor: not-allowed;
+}
+a{
+    color: #000;
+}
+th,td{
+    vertical-align: middle!important;
 }
 th a:hover{
     color: #ccc;
     text-decoration: none;
 }
+th a.current{
+    color: red;
+}
 th a.today:hover{
     color: #000;
-    text-decoration: underline;
 }
 .score-row:first-child{
     color:red
+}
+.score-row th:first-child{
+    border-left: 2px solid #000;
+}
+.score-row td:last-child{
+    border-right: 2px solid #000;
+}
+table td {
+    text-align: center;
+}
+.score-row td{
+    border-left: 1px solid #aaa;
+    border-top: none;
+    cursor: not-allowed;
+}
+.score-row td.today{
+    cursor: pointer;
+}
+table th, table td{
+    text-align: center;
+    width: 65px;
+}
+table th:first-child{
+    text-align: left;
+    width: auto;
+}
+.score-row td, .score-row th{
+
 }
 .day-0{
     display:table-row
@@ -35,7 +71,167 @@ th a.today:hover{
 body{
     background: #EBEBEB
 }
+body.dashboard{
+    background: #FFF;
+}
 #adult_fields{
     display: none;
 }
+.points, .confirm{
+    padding: 5px 0px;
+}
+.confirm a, .ok, .cancel{
+    background: green;
+    border: 0px transparent;
+    border-radius: 0px;
+    color: #FFF;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+.confirm a:hover, .ok:hover, .cancel:hover{
+    color: #FFF;
+}
+.cancel, .ok{
+    padding: 20px 150px;
+}
+.cancel{
+    background: red;
+}
+.grey, .confirm .grey{
+    background: grey
+}
+.points input{
+    width: 50px;
+    border: 1px solid #ccc;
+    background: #FFF;
+    text-align: center;
+    padding: 10px 15px;
+}
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    border-top: none;
+    border-bottom: none;
+}
+.index table th a{
+    display: inline-block;
+    background: #FFF;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+.index table th, .index table td{
+    padding: 5px;
+    text-transform: uppercase;
+}
+#overflow {
+    background: #fff none repeat scroll 0 0;
+    height: 100%;
+    opacity: 0.8;
+    position: fixed;
+    width: 100%;
+    text-align: center;
+}
+#overflow a{
+    top: 50%;
+    position: relative;
+}
+.alert {
+    background: red;
+    border-radius: 0;
+    color: #fff;
+}
+.alert.notice{
+    background: green;
+}
+.error{
+    background: red;
+}
+.breadcrumb{
+    background: transparent;
+    text-align: center;
+}
+.breadcrumb > li + li:before {
+    content: none;
+    color: #000;
+    padding: 0 5px;
+    cursor: pointer
+}
+.breadcrumb > li {
+    border-right: 1px dotted #7f7f7f;
+    display: inline-block;
+    padding: 5px;
+    text-transform: uppercase;
+}
+.breadcrumb > li:last-child{
+    border: none;
+ }   
+.newsletter, .seguici{
+    color: #5f3813;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 1.5;
+    text-decoration: none;
+}
+.seguici{
+    font-weight: normal;
+    font-size: 33px;
+}
+.newsletter, .seguici a, .newsletter:hover, .seguici a:hover{
+    text-decoration: none;
+    color: #5f3818;
+}
+nav .col-md-4{
+    text-align: right;
+}
+.user_form, #new_user{
+    width: 750px;
+    margin: 0 auto; 
+}
+.user_form input[type='text'], .user_form .pad, #new_user input[type='text'], #new_user .pad{
+    border: 1px solid #aaa;   
+}
+.user_form .form-group-lg,#new_user .form-group-lg{
+    width: 100%;
+}
+.user_form .form-group-lg label, #new_user .form-group-lg label{
+    max-width: 50%;
+    min-width: 373px;
+}
+#new_user .field_with_errors input[type='text'],.user_form .field_with_errors input[type='text']{
+    border-color: red;
+}
 
+.user_form input[type='text'],#new_user input[type='text']{
+    background: #FFF;
+    color: #000;
+    width: 100%;
+    height: 50px;
+}
+.user_form .pad,#new_user .pad{
+
+}
+.user_form .clearButton,#new_user .clearButton{
+    float: right;    
+}
+.user_form .regulations ,#new_user .regulations{
+    background: rgb(255, 255, 255) none repeat scroll 0 0;
+    border: 1px solid rgb(170, 170, 170);
+    color: rgb(0, 0, 0);
+    height: 200px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.slider{
+    background-image: url("http://www.centromilanofiori.it/wp-content/themes/acquario/img/ombra_slider.png");
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    padding-bottom: 34px;
+}
+.bx-wrapper {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    margin: 0 auto;
+}
+.bx-wrapper .bx-pager, .bx-wrapper .bx-controls-auto {
+    bottom: 30px;
+}    

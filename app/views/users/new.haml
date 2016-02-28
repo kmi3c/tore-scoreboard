@@ -1,45 +1,79 @@
-.panel.panel-default
-  .panel-heading
-    %h3.panel-title New User
-  .panel-body
-    .well
-      =form_for(@resource,url: {action: "create"}, html: { class:'form-horizontal'}) do |f|
-        -if @resource.errors.any?
-          #error_explanation
-            %p="#{pluralize(@resource.errors.count, "error")} prohibited this #{resource_name} from being saved"
-            %ul
-              -@resource.errors.full_messages.each do |message|
-                %li=message
-        .form-group-lg
-          -%w(nickname email first_name last_name).each do |field|
-            %label
-              %span= field+':'
-              = render 'shared/scaffold/field', f: f, field: field, resource: @resource
-        .form-group-lg
-          %label
-            %span adult?
-            %span yes
-            =f.radio_button :adult, 1, checked: @adult == '1'? true : false
-          %label
-            %span no
-            =f.radio_button :adult, 0, checked: @adult == '0'? true : false
-        .form-group-lg#adult_fields{style:"display: none;"}
-          %label
-            %span parent name
-            = f.text_field :p_first_name
-          %label
-            %span parent name
-            = f.text_field :p_last_name
-        .form-group-lg
-          %label
-            %span signature
-            %canvas.pad{width:"198",height:"55"}
-            %input.output{type:"hidden",name:"user[signature_json"}
-        .actions
-          = f.submit class: 'btn'
+=form_for(@resource,url: {action: "create"}, html: { class:'form-horizontal user_form'}) do |f|
+  LBERATORIA
+  .form-group-lg
+    %label
+      %span Eta
+      =f.radio_button :adult, 1, checked: @adult == '1'? true : false
+      %span maggiorenne
+    %label
+      =f.radio_button :adult, 0, checked: @adult == '0'? true : false
+      %span minorenne
+  .form-group-lg
+    %label
+      %span
+        Nome Giocatore(richiesto)
+      %br  
+      = f.text_field :first_name
+    %label
+      %span
+        Cognome Giocatore(richiesto)
+      %br  
+      = f.text_field :last_name
+  .form-group-lg
+    %label
+      %span
+        Telefono
+      %br  
+      = f.text_field :phone
+    %label
+      %span
+        Email
+      %br  
+      = f.text_field :email                    
+  .form-group-lg#adult_fields{style:"display: none;"}
+    %label
+      %span
+        Nome Giocatore(richiesto)
+      %br  
+      = f.text_field :p_first_name
+    %label
+      %span
+        Cognome Giocatore(richiesto)
+      %br  
+      = f.text_field :p_last_name
+  .form-group-lg
+    %label
+      %span
+        Nicnkname Giocatore
+      %br  
+      = f.text_field :nickname      
+  .form-group-lg
+    %p.regulations
+      Regulations
+      %br
+      Lorem ipsum dolor
+      %br
+      etc.
+  .form-group-lg
+    %label
+      Firma
+      %br  
+      %canvas.pad{width:"750",height:"200"}
+      %input.output{type:"hidden",name:"user[signature_json"}
+    %span.clearButton
+      %a{href:'#clear'} Clear  
+  .actions
+    %input{type:"submit",class:"btn ok",value:"INVIA",name:"commit", style:'width: 100%'} 
 :javascript
   $(document).ready(function () {
-    $('#new_user').signaturePad({drawOnly: true});
+    $('#new_user').signaturePad({
+      drawOnly: true,
+      lineWidth: 0,
+      bgColour: 'transparent',
+      penColour: '#000000',
+      penWidth: 4,
+      validateFields: false,
+    });
     $('input[name="user[adult]"]').bind('change',function(){
       if($(this).val() == 0){
         $('#adult_fields').show();
@@ -47,5 +81,5 @@
         $('#adult_fields').hide();
       }
     });
-    $('input[name="user[adult]"]').trigger('change');
+    $('input[name="user[adult]"]:checked').trigger('change');
   });
