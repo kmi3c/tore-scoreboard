@@ -1,0 +1,10 @@
+- flash.each do |type, message|
+  .alert.alert-dismissible.fade.in{class: type}
+    -if  message.is_a? Array
+      -message.each do |m|
+        = m
+    -else
+      = message
+    %button.close{type:'button','data-dismiss'=>'alert'}
+      %span{'aria-hidden'=>true} &times;
+      %span{class:'sr-only'} Close

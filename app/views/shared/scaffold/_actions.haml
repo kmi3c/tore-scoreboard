@@ -1,0 +1,5 @@
+- @actions.each do |a|
+  - unless a == :destroy
+    = link_to t("#{a}.name",scope: :scaffold), self.send("resource_#{a}_path",resource)
+  - else
+    = link_to t("#{a}.name",scope: :scaffold), self.send("resource_#{a}_path",resource), method: :delete, data: { confirm:  t('destroy.confirm',scope: :scaffold) }

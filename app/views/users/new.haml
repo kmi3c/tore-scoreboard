@@ -1,0 +1,51 @@
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title New User
+  .panel-body
+    .well
+      =form_for(@resource,url: {action: "create"}, html: { class:'form-horizontal'}) do |f|
+        -if @resource.errors.any?
+          #error_explanation
+            %p="#{pluralize(@resource.errors.count, "error")} prohibited this #{resource_name} from being saved"
+            %ul
+              -@resource.errors.full_messages.each do |message|
+                %li=message
+        .form-group-lg
+          -%w(nickname email first_name last_name).each do |field|
+            %label
+              %span= field+':'
+              = render 'shared/scaffold/field', f: f, field: field, resource: @resource
+        .form-group-lg
+          %label
+            %span adult?
+            %span yes
+            =f.radio_button :adult, 1, checked: @adult == '1'? true : false
+          %label
+            %span no
+            =f.radio_button :adult, 0, checked: @adult == '0'? true : false
+        .form-group-lg#adult_fields{style:"display: none;"}
+          %label
+            %span parent name
+            = f.text_field :p_first_name
+          %label
+            %span parent name
+            = f.text_field :p_last_name
+        .form-group-lg
+          %label
+            %span signature
+            %canvas.pad{width:"198",height:"55"}
+            %input.output{type:"hidden",name:"user[signature_json"}
+        .actions
+          = f.submit class: 'btn'
+:javascript
+  $(document).ready(function () {
+    $('#new_user').signaturePad({drawOnly: true});
+    $('input[name="user[adult]"]').bind('change',function(){
+      if($(this).val() == 0){
+        $('#adult_fields').show();
+      }else{
+        $('#adult_fields').hide();
+      }
+    });
+    $('input[name="user[adult]"]').trigger('change');
+  });

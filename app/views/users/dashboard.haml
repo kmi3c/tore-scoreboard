@@ -1,0 +1,25 @@
+- today = Time.zone.now.to_date
+%h1 Dashboard
+%table.table.table-striped
+  %thead
+    %tr
+      %th CLASSIFICA
+      -User.user_days.each_with_index do |(d,name),i|
+        %th
+          %a.day{"data-day"=>i+1,'data-date'=>d, class:"#{'today' if today >= d.to_date}"}= name
+  %tbody
+    - @users.each_with_index do |u,i|
+      %tr{class:'score-row'}
+        %th= u.nickname
+        -u.days.each_with_index do |(d,score),i|
+          %td{class:"day day-#{i+1} #{'today' if today >= d}"}= score
+        %td= u.score
+:javascript
+  $('th a.day.today').bind('click',function(){
+    $('.score-row td.day').css('text-indent','-9999px');
+    for (i = 1; i <= $(this).data('day'); i++) {
+      $('.score-row .day-'+i).each(function(){
+        $(this).css('text-indent','0px').append($(this).data('score')).show();
+      });
+    }
+  });

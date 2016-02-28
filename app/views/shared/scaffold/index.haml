@@ -1,0 +1,20 @@
+#notice
+  %p= notice
+%h2 #{resource_name.pluralize} list #{link_to t('import.name',scope: :scaffold),resource_import_path, class: 'btn'} #{link_to t('create.name',scope: :scaffold), resource_new_path, class: 'btn'}
+%hr
+%table{width:'100%'}
+  %thead
+    %tr
+      %th{colspan:'2'}
+  %tbody
+    -@resources.each do |resource|
+      %tr
+        %td
+          = link_to resource, resource_edit_path(resource)
+        %td
+          = render 'shared/scaffold/actions', resource: resource
+%hr
+  = will_paginate @resources
+%hr
+= link_to t('import.name',scope: :scaffold),resource_import_path, class: 'btn'
+= link_to t(:new,scope: :scaffold), resource_new_path, class: 'btn'

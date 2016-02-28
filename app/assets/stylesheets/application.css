@@ -1,0 +1,41 @@
+/*
+ *= require signature-pad
+ *= require bootstrap_and_overrides
+ *= require_tree .
+ *= require_self
+ */
+.score-row td.day{
+    text-indent: -9999px;
+}
+.score-row td.today{
+    text-indent: 0px;
+}
+th a.today, table th:last-child a{
+    color: #000;
+    cursor: pointer;
+}
+th a{
+    color: #ccc;
+    cursor: not-allowed;
+}
+th a:hover{
+    color: #ccc;
+    text-decoration: none;
+}
+th a.today:hover{
+    color: #000;
+    text-decoration: underline;
+}
+.score-row:first-child{
+    color:red
+}
+.day-0{
+    display:table-row
+}
+body{
+    background: #EBEBEB
+}
+#adult_fields{
+    display: none;
+}
+

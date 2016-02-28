@@ -1,0 +1,9 @@
+%h2 Import
+= form_tag users_import_path, multipart: true do
+  %label Podaj plik .csv
+  = file_field_tag :file, accept: 'text/csv'
+  %span.help-inline Max. 10MB
+  = submit_tag "Importuj", class:  "btn blue"
+end
+%hr
+  = link_to 'Back', users_path, class: 'btn'

@@ -1,0 +1,16 @@
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title New User
+  .panel-body
+    .well
+      =form_tag(sessions_path, class:'form-horizontal') do |f|
+        .form-group-lg
+          %label
+            %span login
+            = text_field_tag :login
+        .form-group-lg
+          %label
+            %span password
+            = password_field_tag :password
+        .actions
+          = submit_tag 'Login', class: 'btn'

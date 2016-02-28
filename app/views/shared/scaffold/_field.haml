@@ -1,0 +1,4 @@
+- if resource_class.reflect_on_all_associations.collect{|u| u.foreign_key }.include?(field.to_sym)
+  = f.select field.to_sym, resource_class.reflect_on_all_associations.collect{|u| u.name if u.foreign_key == :id_client }.compact[0].to_s.classify.constantize.pluck(:name, :id)
+-else
+  = f.text_field field

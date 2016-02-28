@@ -1,0 +1,7 @@
+%h2 Podgląd Użytkownika
+#notice= notice
+-resource_class.column_names.each do |field|
+  %p #{@resource.send(field)}
+%hr
+= link_to 'Edit', edit_user_path(@resource)
+= link_to 'Back', users_path

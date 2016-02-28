@@ -1,0 +1,19 @@
+en:
+  scaffold:
+    create:
+      name: 'New'
+      success: '%{resource_class} was successfully created.'
+    update:
+      success: '%{resource_class} was successfully updated.'
+    show:
+     name: 'Show'
+    edit:
+     name: 'Edit'
+    destroy:
+      name: 'Destroy'
+      success: '%{resource_class} was successfully destroyed.'
+      confirm: 'Are you sure?'
+    import:
+     name: 'Import'
+     success: '%{resource_class} were successfully imported.'
+    back: 'Back'

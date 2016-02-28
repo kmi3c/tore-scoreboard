@@ -1,0 +1,32 @@
+== README
+
+Requriements:
+
+* Ruby version: 2.2.+
+
+* System dependencies:
+  * any UNIX based system, developed on Ubuntu
+  * imagemagic
+  * mysql
+  * any gem specific confifuration @see Gemifile
+
+* Configuration:
+  * fill /config/database.yml
+  * fill any translations you want in /config/locales/*.yml
+
+* Database creation
+  * from a root folfer of application execute:
+  * rake db:create
+  * rake db:migrate
+  * optionally rake db:seed for example data
+
+* Deployment instructions
+  * run server under Passenger
+  * intall gem passenger: <tt>gem install passenger</tt>
+  * enable mod_passenger for ngnix or apache
+  * point your host configuration to your app_root/public folder
+  * run <tt>RAILS_ENV=production rake assets:precompile</tt>
+  * read more @ https://www.digitalocean.com/community/tutorials/how-to-install-rails-apache-and-mysql-on-ubuntu-with-passenger
+
+
+

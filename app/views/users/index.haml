@@ -1,0 +1,16 @@
+%h1 Today Users list
+%table.table.table-striped{width:'100%'}
+  %thead
+    %tr
+      %th Nickname
+      %th Today
+      %th Total
+  %tbody
+    -@resources.each do |resource|
+      %tr
+        %td= link_to resource.nickname , resource_edit_path(resource)
+        %td
+          =form_for(resource) do |f|
+            %input#user_score{type:"text",name:"user[score]",value:resource.today_score}
+        %td= resource.score
+  = will_paginate @resources
