@@ -1,6 +1,6 @@
 #notice
   %p= notice
-%h2 #{resource_name.pluralize} list #{link_to t('import.name',scope: :scaffold),resource_import_path, class: 'btn'} #{link_to t('create.name',scope: :scaffold), resource_new_path, class: 'btn'}
+%h2 #{resource_name.pluralize} list #{link_to 'Export',resource_export_path, class: 'btn'} #{link_to t('import.name',scope: :scaffold),resource_import_path, class: 'btn'} #{link_to t('create.name',scope: :scaffold), resource_new_path, class: 'btn'}
 %hr
 %table{width:'100%'}
   %thead

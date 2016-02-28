@@ -71,8 +71,20 @@ table th:first-child{
 body{
     background: #EBEBEB
 }
+body.ipads{
+    width: 768px;
+    margin: 0 auto;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
 body.dashboard{
     background: #FFF;
+}
+table tbody tr:first-child td.confirm a{
+    background: green;
+}
+table .confirm a{
+    background: #ccc;
 }
 #adult_fields{
     display: none;
@@ -98,7 +110,11 @@ body.dashboard{
     background: red;
 }
 .grey, .confirm .grey{
-    background: grey
+    background: #CCCCCC;
+    border-radius: 0px;
+}
+.logout{
+    float: right;
 }
 .points input{
     width: 50px;
@@ -129,6 +145,8 @@ body.dashboard{
     position: fixed;
     width: 100%;
     text-align: center;
+    left: 0;
+    right: 0;
 }
 #overflow a{
     top: 50%;
@@ -183,7 +201,7 @@ nav .col-md-4{
     text-align: right;
 }
 .user_form, #new_user{
-    width: 750px;
+    width: 720px;
     margin: 0 auto; 
 }
 .user_form input[type='text'], .user_form .pad, #new_user input[type='text'], #new_user .pad{
@@ -194,23 +212,38 @@ nav .col-md-4{
 }
 .user_form .form-group-lg label, #new_user .form-group-lg label{
     max-width: 50%;
-    min-width: 373px;
+    min-width: 358px;
 }
 #new_user .field_with_errors input[type='text'],.user_form .field_with_errors input[type='text']{
-    border-color: red;
+    border:none;
 }
-
+#new_user .regulations2 .field_with_errors:nth-of-type(odd){
+    border-radius: 15px;
+    display: inline-block;
+    padding: 0 3px;
+}
+#new_user .regulations2 .field_with_errors:nth-of-type(even){
+    border: none;
+    display: inline-block;
+    padding: 0 3px;
+}
+#new_user .field_with_errors,.user_form .field_with_errors{
+    border: 1px solid red;
+}
 .user_form input[type='text'],#new_user input[type='text']{
     background: #FFF;
     color: #000;
     width: 100%;
     height: 50px;
 }
+
 .user_form .pad,#new_user .pad{
 
 }
 .user_form .clearButton,#new_user .clearButton{
-    float: right;    
+    float: right;
+    padding: 2px 5px;
+    margin-top:-4px;
 }
 .user_form .regulations ,#new_user .regulations{
     background: rgb(255, 255, 255) none repeat scroll 0 0;

@@ -1,5 +1,5 @@
 %h2  #{@resource} edit
 = render 'shared/scaffold/form'
 %hr
-= link_to t('show.name',scope: :scaffold), @resource, class: 'btn'
+= link_to t('show.name',scope: :scaffold), resource_path(@resource), class: 'btn'
 = link_to t(:back,scope: :scaffold), resources_path, class: 'btn'

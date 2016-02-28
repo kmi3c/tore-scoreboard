@@ -8,7 +8,8 @@
   %body{class:params[:action]}
     .container-fluid
       %nav
-        .col-md-8= image_tag asset_path("logo.gif")
+        .col-md-8
+          %a{href:'http://www.centromilanofiori.it'}= image_tag asset_path("logo.gif")
         .col-md-4
           %a.newsletter{href:"http://www.centromilanofiori.it/newsletter"}
             %span 
@@ -27,9 +28,7 @@
                 %img{src:"http://www.centromilanofiori.it/wp-content/themes/acquario/img/youtube.gif"}
       .col-md-12.slider
         .bx-slider
-          = image_tag "http://dummyimage.com/600x300/ffffff/FF0000.png&text=OLIMIPA BASKET CHALLENGE 1"
-          = image_tag "http://dummyimage.com/600x300/ffffff/FF0000.png&text=OLIMIPA BASKET CHALLENGE 2"
-          = image_tag "http://dummyimage.com/600x300/FF0000/ffffff.png&text=OLIMIPA BASKET CHALLENGE 3"
+          = image_tag asset_path('banner.jpg')
 
       :javascript
         $(document).ready(function(){

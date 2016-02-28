@@ -11,7 +11,11 @@
       %tr{class:'score-row'}
         %th= u.nickname
         -u.days.each_with_index do |(d,score),i|
-          %td{class:"day day-#{i+1} #{'today' if r_today >= d}",'data-day'=>i+1}= r_today >= d ? u.send(score.gsub(' ','').downcase.to_sym) : '-'
+          %td{class:"day day-#{i+1} #{'today' if r_today >= d}",'data-day'=>i+1}
+            - if r_today >= d 
+              = u.send(score.gsub(' ','').downcase.to_sym).nil? ? '-' : u.send(score.gsub(' ','').downcase.to_sym)
+            - else
+              -
         %td= u.score
 :javascript
   $('td.day.today').bind('click',function(){

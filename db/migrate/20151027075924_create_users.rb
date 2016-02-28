@@ -11,15 +11,15 @@ class CreateUsers < ActiveRecord::Migration
       t.text    :signature_json
       t.string  :signature_uid
       t.string  :signature_name
-      t.boolean :adult
-      t.boolean :accept_r
-      t.boolean :accept_m
-      t.integer :day1, default: 0
-      t.integer :day2, default: 0
-      t.integer :day3, default: 0
-      t.integer :day4, default: 0
-      t.integer :day5, default: 0
-      t.integer :finale, default: 0
+      t.boolean :adult, default: false
+      t.boolean :accept_r, default: false
+      t.boolean :accept_m, default: false
+      t.integer :day1, default: nil
+      t.integer :day2, default: nil
+      t.integer :day3, default: nil
+      t.integer :day4, default: nil
+      t.integer :day5, default: nil
+      t.integer :finale, default: nil
       t.integer :score, default: 0
 
       t.timestamps null: false

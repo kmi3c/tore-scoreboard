@@ -9,7 +9,7 @@ class UsersController < ScaffoldController
   def index
   	today = User.user_days.except('TOTAL').invert[Time.zone.now.to_date]
     today = today.nil? ? 'score' : User.user_days.except('TOTAL').invert[Time.zone.now.to_date].gsub(' ','').downcase
-    @resources = User.order("#{today} ASC").where('updated_at >= ?', Time.zone.now.to_date.to_time)
+    @resources = User.order("#{today} ASC").where('DATE(updated_at) = ?', Time.zone.now.to_date).where("#{today} is null")
     render_template
   end
   def update
@@ -28,11 +28,13 @@ class UsersController < ScaffoldController
   end
   def create
     @adult = resource_params[:adult]
+    @accept_r = resource_params[:accept_r]
+    @accept_m = resource_params[:accept_m]
     @resource = resource_class.new(resource_params)
     if @resource.save
       redirect_to resource_new_path, notice: t('create.success',scope: :scaffold, resource_class: resource_class)
-    elsif @resrouce = User.where(email: resource_params[:email]).first
-      @resource.save
+    elsif exists = User.where(email: resource_params[:email]).first
+      exists.touch
       redirect_to resource_new_path, notice: t('create.success_login',scope: :scaffold, resource_class: resource_class)  
     else
       flash[:alert] = @resource.errors.to_a

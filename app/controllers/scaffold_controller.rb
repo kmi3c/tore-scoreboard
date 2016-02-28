@@ -19,14 +19,14 @@ class ScaffoldController < ApplicationController
   def create
     @resource = resource_class.new(resource_params)
     if @resource.save
-      redirect_to @resource, notice:  t('create.success',scope: :scaffold, resource_class: resource_class)
+      redirect_to resource_show_path(@resource), notice:  t('create.success',scope: :scaffold, resource_class: resource_class)
     else
       render_template
     end
   end
   def update
     if @resource.update(resource_params)
-      redirect_to @resource, notice: t('update.success',scope: :scaffold, resource_class: resource_class)
+      redirect_to resource_show_path(@resource), notice: t('update.success',scope: :scaffold, resource_class: resource_class)
     else
       render_template
     end
@@ -51,19 +51,19 @@ class ScaffoldController < ApplicationController
         import = resource_class.import(params[:file])
         if import == true
           flash[:success] =  t(:import_success,scope: :scaffold)
-          redirect_to resources_path
+          redirect_to resources_path and return
         else
           flash[:error] = import
         end
       end
     else
-      redirect_to resources_path
+      redirect_to resources_path  and return
     end
     render_template
   end
 
   def export
-
+    send_data resource_class.to_csv(resource_class.all, columns), :filename => "users.csv"
   end
   protected
   def render_template name = nil

@@ -1,4 +1,4 @@
-=form_for(@resource) do |f|
+=form_for(@resource, url: resource_show_path(@resource)) do |f|
   -if @resource.errors.any?
     #error_explanation
       %p="#{pluralize(@resource.errors.count, "error")} prohibited this #{resource_name} from being saved"
